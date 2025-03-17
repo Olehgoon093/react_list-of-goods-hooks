@@ -17,7 +17,7 @@ export const goodsFromServer: string[] = [
   'Garlic',
 ];
 
-const sortGoods = (
+const getSortedGoods = (
   goods: string[],
   type: SortType,
   reversed: boolean,
@@ -44,7 +44,7 @@ export const App: React.FC = () => {
   const [goods] = useState<string[]>(goodsFromServer);
   const [sortFill, setSortFill] = useState<SortType>(SortType.Default);
   const [reversed, setReversed] = useState<boolean>(false);
-  const sorterGoods = sortGoods(goods, sortFill, reversed);
+  const sorterGoods = getSortedGoods(goods, sortFill, reversed);
 
   return (
     <div className="section content">
@@ -83,7 +83,7 @@ export const App: React.FC = () => {
           <button
             type="button"
             className={cn('button is-danger', {
-              'is-light': sortFill !== SortType.Default,
+              'is-light': sortFill === SortType.Default,
             })}
             onClick={() => {
               setSortFill(SortType.Default);
